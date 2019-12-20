@@ -1,19 +1,29 @@
 {
   "name": "@infoa2/nodesdk",
-  "private": false,
   "version": "0.0.1",
   "description": "Node.JS sdk",
-  "main": "src/index.ts",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vagnercardosoweb/infoa2-nodesdk.git"
   },
-  "author": "Vagner Cardoso <vagnercardosoweb@gmail.com>",
+  "authors": [
+    {
+      "name": "Vagner Cardoso",
+      "email": "vagnercardosoweb@gmail.com"
+    }
+  ],
   "license": "MIT",
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
     "test": "NODE_ENV=testing jest"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "jest": {
     "bail": true,
@@ -29,7 +39,6 @@
       "**/__tests__/**/*.test.(ts|js)"
     ]
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^24.0.24",
     "@types/node": "^12.12.21",
