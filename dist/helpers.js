@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -38,14 +47,16 @@ function uuid(a) {
         : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid);
 }
 exports.uuid = uuid;
-async function createTmpFile(data, extension) {
-    if (!data || !extension) {
-        throw new Error('createTmpFile: arguments invalids.');
-    }
-    extension = extension.replace('.', '');
-    const filePath = `${os_1.default.tmpdir()}/${uuid()}-${Date.now()}.${extension}`;
-    await fs_1.promises.writeFile(`${filePath}`, data);
-    return filePath;
+function createTmpFile(data, extension) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (!data || !extension) {
+            throw new Error('createTmpFile: arguments invalids.');
+        }
+        extension = extension.replace('.', '');
+        const filePath = `${os_1.default.tmpdir()}/${uuid()}-${Date.now()}.${extension}`;
+        yield fs_1.promises.writeFile(`${filePath}`, data);
+        return filePath;
+    });
 }
 exports.createTmpFile = createTmpFile;
 function createHash(value, key, algorithm = 'sha256', encoding = 'hex') {
@@ -88,7 +99,7 @@ function isValidaDate(date) {
     return date instanceof Date && !Number.isNaN(date.getTime());
 }
 exports.isValidaDate = isValidaDate;
-function createDateInstance(date, check = false) {
+function createDateInstance(date, check = true) {
     date = date || Date.now();
     if (date instanceof Date) {
         date = date.getTime();
@@ -130,7 +141,7 @@ exports.convertToTitleCase = convertToTitleCase;
 function convertToCamelCaseString(value) {
     return String(value)
         .toLowerCase()
-        .replace(/^([A-Z])|[\s-_](\w)/g, (match, p1, p2) => {
+        .replace(/^([A-Z])|[\s-_](\w)/g, (_, p1, p2) => {
         if (p2)
             return p2.toUpperCase();
         return p1.toLowerCase();

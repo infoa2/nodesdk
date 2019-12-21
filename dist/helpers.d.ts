@@ -1,0 +1,25 @@
+/// <reference types="node" />
+import { HexBase64Latin1Encoding, BinaryLike } from 'crypto';
+import { ParsedUrlQueryInput } from 'querystring';
+export declare function existsOrError(value?: any, message?: string): void;
+export declare function notExistsOrError(value: any, message: string): any;
+export declare function equalsOrError(a?: any, b?: any, message?: string): any;
+export declare function uuid(a?: any): string;
+export declare function createTmpFile(data: any, extension: string): Promise<string>;
+export declare function createHash(value: BinaryLike, key: BinaryLike, algorithm?: string, encoding?: HexBase64Latin1Encoding): string;
+export declare function createHashMd5(value: BinaryLike): string;
+export declare function createRandomBytes(length?: number): Promise<string>;
+export declare function createRandomInt(min: number, max: number): number;
+export declare function createRandomIntInclusive(min: number, max: number): number;
+export declare function isValidaDate(date: any): boolean;
+export declare function createDateInstance(date?: Date | string | number, check?: boolean): Date;
+export declare function convertToTitleCase(string: string): string;
+export declare function convertToCamelCaseString(value: string): string;
+export declare function convertToCamelCaseObject(obj?: any): object | boolean;
+export declare function validateCpf(cpf: string | number): boolean;
+export declare function validateCnpj(cnpj: string | number): boolean;
+export declare function onlyNumber(value: any): string | number;
+export declare function removeAccents(value: string): string;
+export declare function normalizeMoney(value: string): number;
+export declare function formatMoneyBrl(value: number): string;
+export declare function getImageGravatar(email: string, params?: ParsedUrlQueryInput): string;

@@ -5,7 +5,8 @@ import {
   createRandomBytes,
   formatMoneyBrl,
   normalizeMoney,
-} from '../src/helpers';
+  onlyNumber,
+} from '../src';
 
 describe('Helpers', () => {
   it('check not valid cpf.', () => {
@@ -37,7 +38,11 @@ describe('Helpers', () => {
     expect(formatMoneyBrl(1250)).toMatch(/^R\$\s1,250\.00$/);
   });
 
-  it('normalize price value', () => {
+  it('normalize price value.', () => {
     expect(normalizeMoney('R$ 1,250.51')).toBe(1250.51);
+  });
+
+  it('Remove all non-numeric characters.', () => {
+    expect(onlyNumber('Meu cpf é: 09.121.022/0001-84')).toBe('09121022000184');
   });
 });

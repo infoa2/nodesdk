@@ -59,7 +59,7 @@ export function createHash(
     .digest(encoding);
 }
 
-export function createHashMd5(value?: string): string {
+export function createHashMd5(value: BinaryLike): string {
   return crypto
     .createHash('md5')
     .update(value)
@@ -96,7 +96,7 @@ export function isValidaDate(date: any): boolean {
 
 export function createDateInstance(
   date?: Date | string | number,
-  check: boolean = false
+  check: boolean = true
 ): Date {
   date = date || Date.now();
 
@@ -144,7 +144,7 @@ export function convertToTitleCase(string: string): string {
 export function convertToCamelCaseString(value: string): string {
   return String(value)
     .toLowerCase()
-    .replace(/^([A-Z])|[\s-_](\w)/g, (match, p1, p2) => {
+    .replace(/^([A-Z])|[\s-_](\w)/g, (_, p1, p2) => {
       if (p2) return p2.toUpperCase();
       return p1.toLowerCase();
     });
