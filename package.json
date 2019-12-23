@@ -1,6 +1,6 @@
 {
   "name": "@infoa2/nodesdk",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "description": "Node.JS sdk",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "NODE_ENV=development tsc --watch",
     "test": "NODE_ENV=testing jest",
-    "prebuild": "rm -rf ./dist",
+    "prebuild": "rm -rf ./dist && rm tsconfig.tsbuildinfo",
     "build": "tsc"
   },
   "publishConfig": {
