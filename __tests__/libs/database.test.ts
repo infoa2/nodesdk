@@ -64,8 +64,7 @@ class AddressModel extends Model {
   }
 }
 
-const database = new Database();
-const sequelize = database.sequelize({
+const sequelize = Database.sequelize({
   dialect: 'sqlite',
   storage: resolve(__dirname, 'database.sqlite'),
   models: [UserModel, AddressModel],

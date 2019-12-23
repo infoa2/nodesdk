@@ -3,11 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const ConnectSequelize_1 = __importDefault(require("./ConnectSequelize"));
+const Sequelize_1 = __importDefault(require("./Sequelize"));
 class Database {
-    sequelize(options) {
-        return new ConnectSequelize_1.default(options).connection;
+    static sequelize(options) {
+        return new Sequelize_1.default(options).connection;
     }
-    mongoose() { }
+    static mongoose() {
+        throw new Error('Soon mongoose will be supported.');
+    }
 }
 exports.default = Database;

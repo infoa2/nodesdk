@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { Sequelize } from 'sequelize';
-import ConnectSequelize, { IOptions } from './ConnectSequelize';
+import ConnectSequelize, { IOptions } from './Sequelize';
 
 export default class Database {
-  sequelize(options: IOptions): Sequelize {
+  public static sequelize(options: IOptions): Sequelize {
     return new ConnectSequelize(options).connection;
   }
 
-  mongoose(): void {}
+  public static mongoose(): void {
+    throw new Error('Soon mongoose will be supported.');
+  }
 }

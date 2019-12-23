@@ -6,3 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./helpers"));
 var Database_1 = require("./libs/Database");
 exports.Database = Database_1.default;
+var View_1 = require("./libs/View");
+exports.View = View_1.default;

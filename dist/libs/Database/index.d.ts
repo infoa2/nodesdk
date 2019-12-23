@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize';
-import { IOptions } from './ConnectSequelize';
+import { IOptions } from './Sequelize';
 export default class Database {
-    sequelize(options: IOptions): Sequelize;
-    mongoose(): void;
+    static sequelize(options: IOptions): Sequelize;
+    static mongoose(): void;
 }
