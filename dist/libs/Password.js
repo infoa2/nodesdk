@@ -28,3 +28,4 @@ class Password {
     }
 }
 exports.default = new Password();
+//# sourceMappingURL=Password.js.map
