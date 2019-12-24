@@ -6,7 +6,7 @@ export interface IPasswordResponse {
   verify: (value: string, hashed: string) => Promise<boolean>;
 }
 
-export default class Password {
+class Password {
   public get bcrypt(): IPasswordResponse {
     return {
       create(value: string): Promise<string> {
@@ -29,3 +29,5 @@ export default class Password {
     };
   }
 }
+
+export default new Password();

@@ -27,4 +27,4 @@ class Password {
         };
     }
 }
-exports.default = Password;
+exports.default = new Password();
