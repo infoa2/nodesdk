@@ -9,7 +9,7 @@ import {
 } from 'sequelize';
 import { resolve } from 'path';
 import { unlinkSync } from 'fs';
-import Database from '../../src/libs/Database';
+import { Database } from '../src';
 
 class UserModel extends Model {
   public id!: String;
@@ -64,9 +64,11 @@ class AddressModel extends Model {
   }
 }
 
+const pathDatabase = resolve(__dirname, 'tmp', 'database.sqlite');
 const sequelize = Database.sequelize({
+  logging: false,
   dialect: 'sqlite',
-  storage: resolve(__dirname, 'database.sqlite'),
+  storage: pathDatabase,
   models: [UserModel, AddressModel],
 });
 
@@ -97,6 +99,6 @@ describe('Database', () => {
 });
 
 afterAll(() => {
-  unlinkSync(resolve(__dirname, 'database.sqlite'));
+  unlinkSync(pathDatabase);
   sequelize.close();
 });
