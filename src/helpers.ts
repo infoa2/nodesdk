@@ -129,6 +129,12 @@ export function createDateInstance(
   return newDate;
 }
 
+export function calculateAge(date: Date | string | number): number {
+  const birthday = +createDateInstance(date);
+  // eslint-disable-next-line no-bitwise
+  return ~~((Date.now() - birthday) / 3.15576e10);
+}
+
 export function convertToTitleCase(string: string): string {
   if (!string) {
     return '';
