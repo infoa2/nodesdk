@@ -3,7 +3,7 @@ import nunjucks, { ConfigureOptions, Environment } from 'nunjucks';
 
 export type TypeViewFilters = { [key: string]: (...args: any[]) => any };
 
-export interface IViewOptions extends ConfigureOptions {
+export interface IViewNunjucksOptions extends ConfigureOptions {
   filters?: TypeViewFilters;
 }
 
@@ -12,7 +12,10 @@ export default class View {
     throw new Error('Soon twig will be supported.');
   }
 
-  public static nunjucks(path: string, options: IViewOptions): Environment {
+  public static nunjucks(
+    path: string,
+    options: IViewNunjucksOptions
+  ): Environment {
     const env = nunjucks.configure(path, options);
     const { express, filters } = options;
 

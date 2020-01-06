@@ -1,5 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 import * as Yup from 'yup';
+
 import { validateCpf, validateCnpj, onlyNumber } from '../helpers';
 
 Yup.string.prototype.cpf = function cpf(message?: string) {
