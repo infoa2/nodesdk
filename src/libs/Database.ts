@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import mongoose, { Mongoose } from 'mongoose';
 import { Sequelize, Options, Model, ModelCtor } from 'sequelize';
 
 export interface IDatabaseSequelizeOptions extends Options {
@@ -17,8 +18,11 @@ export default class Database {
     return sequelize;
   }
 
-  public static mongoose(): void {
-    throw new Error('Soon mongoose will be supported.');
+  public static mongoose(url: string): Promise<Mongoose> {
+    return mongoose.connect(url, {
+      useNewUrlParser: true,
+      useFindAndModify: true,
+    });
   }
 
   private static getSequelizeOptions(
