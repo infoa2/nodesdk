@@ -3,13 +3,14 @@ import nodemailer, { Transporter, SendMailOptions } from 'nodemailer';
 import MailNamespace from 'nodemailer/lib/mailer';
 import MailMessage from 'nodemailer/lib/mailer/mail-message';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
-import View, { IViewOptions } from './View';
+
+import View, { IViewNunjucksOptions } from './View';
 
 export type TypeMailerContext = { [key: string]: any };
 
-export interface IMailerNunjucks {
+export interface IMailerNunjucksOptions {
   path: string;
-  options: IViewOptions;
+  options: IViewNunjucksOptions;
 }
 
 export interface ISendMailOptions extends SendMailOptions {
@@ -19,7 +20,11 @@ export interface ISendMailOptions extends SendMailOptions {
 
 export interface IMailerConfig extends SMTPTransport.Options {
   options?: SendMailOptions;
-  nunjucks?: IMailerNunjucks;
+  nunjucks?: IMailerNunjucksOptions;
+  twig?: {
+    path: string;
+    options: {};
+  };
 }
 
 export default class Mailer {
@@ -35,9 +40,13 @@ export default class Mailer {
     if (typeof config.nunjucks !== 'undefined') {
       this.compileNunjucks(config.nunjucks.path, config.nunjucks.options);
     }
+
+    if (typeof config.twig !== 'undefined') {
+      this.compileTwig(config.twig.path, config.twig.options);
+    }
   }
 
-  public compileNunjucks(path: string, options: IViewOptions): void {
+  public compileNunjucks(path: string, options: IViewNunjucksOptions): void {
     this.transporter.use('compile', (mail: MailMessage, callback: Function) => {
       if (mail.data.html) {
         return callback();
@@ -57,6 +66,10 @@ export default class Mailer {
 
       return mail;
     });
+  }
+
+  public compileTwig(_: string, __: object): void {
+    throw new Error('Twig not implemented.');
   }
 
   from(from: string | MailNamespace.Address) {
