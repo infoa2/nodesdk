@@ -16,4 +16,5 @@ var Database_1 = require("./libs/Database");
 exports.Database = Database_1.default;
 var Password_1 = require("./libs/Password");
 exports.Password = Password_1.default;
-//# sourceMappingURL=index.js.map
+var HttpRequest_1 = require("./libs/HttpRequest");
+exports.HttpRequest = HttpRequest_1.default;

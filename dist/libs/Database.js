@@ -1,5 +1,9 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = __importDefault(require("mongoose"));
 const sequelize_1 = require("sequelize");
 class Database {
     static sequelize(options) {
@@ -10,8 +14,11 @@ class Database {
         }
         return sequelize;
     }
-    static mongoose() {
-        throw new Error('Soon mongoose will be supported.');
+    static mongoose(url) {
+        return mongoose_1.default.connect(url, {
+            useNewUrlParser: true,
+            useFindAndModify: true,
+        });
     }
     static getSequelizeOptions(options) {
         const opts = Object.assign({ dialect: 'mysql', timezone: '+3:00', define: {
@@ -38,4 +45,3 @@ class Database {
     }
 }
 exports.default = Database;
-//# sourceMappingURL=Database.js.map

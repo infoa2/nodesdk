@@ -13,6 +13,7 @@ export declare function createRandomInt(min: number, max: number): number;
 export declare function createRandomIntInclusive(min: number, max: number): number;
 export declare function isValidaDate(date: any): boolean;
 export declare function createDateInstance(date?: Date | string | number, check?: boolean): Date;
+export declare function calculateAge(date: Date | string | number): number;
 export declare function convertToTitleCase(string: string): string;
 export declare function convertToCamelCaseString(value: string): string;
 export declare function convertToCamelCaseObject(obj?: any): object | boolean;

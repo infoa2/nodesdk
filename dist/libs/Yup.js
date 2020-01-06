@@ -39,4 +39,3 @@ Yup.string.prototype.phone = function phone(message) {
     });
 };
 exports.default = Yup;
-//# sourceMappingURL=Yup.js.map

@@ -13,6 +13,9 @@ class Mailer {
         if (typeof config.nunjucks !== 'undefined') {
             this.compileNunjucks(config.nunjucks.path, config.nunjucks.options);
         }
+        if (typeof config.twig !== 'undefined') {
+            this.compileTwig(config.twig.path, config.twig.options);
+        }
     }
     compileNunjucks(path, options) {
         this.transporter.use('compile', (mail, callback) => {
@@ -31,6 +34,9 @@ class Mailer {
             }
             return mail;
         });
+    }
+    compileTwig(_, __) {
+        throw new Error('Twig not implemented.');
     }
     from(from) {
         this.options.from = from;
@@ -82,4 +88,3 @@ class Mailer {
     }
 }
 exports.default = Mailer;
-//# sourceMappingURL=Mailer.js.map

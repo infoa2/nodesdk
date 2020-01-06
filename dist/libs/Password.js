@@ -4,28 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const argon2_1 = __importDefault(require("argon2"));
 class Password {
-    get bcrypt() {
-        return {
-            create(value) {
-                return bcryptjs_1.default.hash(value, 12);
-            },
-            verify(value, hashed) {
-                return bcryptjs_1.default.compare(value, hashed);
-            },
-        };
+    static create(value) {
+        return bcryptjs_1.default.hash(value, 12);
     }
-    get argon2() {
-        return {
-            create(value) {
-                return argon2_1.default.hash(value);
-            },
-            verify(value, hashed) {
-                return argon2_1.default.verify(hashed, value);
-            },
-        };
+    static verify(value, hashed) {
+        return bcryptjs_1.default.compare(value, hashed);
     }
 }
-exports.default = new Password();
-//# sourceMappingURL=Password.js.map
+exports.default = Password;

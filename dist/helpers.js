@@ -128,6 +128,11 @@ function createDateInstance(date, check = true) {
     return newDate;
 }
 exports.createDateInstance = createDateInstance;
+function calculateAge(date) {
+    const birthday = +createDateInstance(date);
+    return ~~((Date.now() - birthday) / 3.15576e10);
+}
+exports.calculateAge = calculateAge;
 function convertToTitleCase(string) {
     if (!string) {
         return '';
@@ -240,4 +245,3 @@ function getImageGravatar(email, params) {
     return `https://www.gravatar.com/avatar/${md5}${query}`;
 }
 exports.getImageGravatar = getImageGravatar;
-//# sourceMappingURL=helpers.js.map

@@ -1,13 +1,13 @@
 import { Transporter, SendMailOptions } from 'nodemailer';
 import MailNamespace from 'nodemailer/lib/mailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
-import { IViewOptions } from './View';
+import { IViewNunjucksOptions } from './View';
 export declare type TypeMailerContext = {
     [key: string]: any;
 };
-export interface IMailerNunjucks {
+export interface IMailerNunjucksOptions {
     path: string;
-    options: IViewOptions;
+    options: IViewNunjucksOptions;
 }
 export interface ISendMailOptions extends SendMailOptions {
     context?: TypeMailerContext;
@@ -15,13 +15,18 @@ export interface ISendMailOptions extends SendMailOptions {
 }
 export interface IMailerConfig extends SMTPTransport.Options {
     options?: SendMailOptions;
-    nunjucks?: IMailerNunjucks;
+    nunjucks?: IMailerNunjucksOptions;
+    twig?: {
+        path: string;
+        options: {};
+    };
 }
 export default class Mailer {
     transporter: Transporter;
     protected options: ISendMailOptions;
     constructor(config: IMailerConfig);
-    compileNunjucks(path: string, options: IViewOptions): void;
+    compileNunjucks(path: string, options: IViewNunjucksOptions): void;
+    compileTwig(_: string, __: object): void;
     from(from: string | MailNamespace.Address): this;
     to(to: string | MailNamespace.Address | MailNamespace.Address[]): this;
     cc(cc: string | MailNamespace.Address | MailNamespace.Address[]): this;
