@@ -1,9 +1,9 @@
 {
   "name": "@infoa2/nodesdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Node.JS sdk",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "authors": [
     {
       "name": "Vagner Cardoso",
@@ -13,8 +13,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development tsc --watch",
-    "test": "NODE_ENV=testing jest",
-    "prebuild": "rm -rf ./dist && rm tsconfig.tsbuildinfo",
+    "test": "NODE_ENV=test jest",
+    "prebuild": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
     "build": "tsc",
     "prepublish": "yarn build"
   },
@@ -22,9 +22,9 @@
     "access": "public"
   },
   "dependencies": {
-    "argon2": "^0.25.1",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.5",
     "nodemailer": "^6.4.2",
     "nunjucks": "^3.2.0",
     "sequelize": "^5.21.3",
@@ -35,6 +35,7 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/jest": "^24.0.24",
     "@types/jsonwebtoken": "^8.3.5",
+    "@types/mongoose": "^5.5.38",
     "@types/node": "^12.12.21",
     "@types/nodemailer": "^6.4.0",
     "@types/nunjucks": "^3.1.3",
